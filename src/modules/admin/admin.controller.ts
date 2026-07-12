@@ -77,7 +77,7 @@ export const updateQuestion: RequestHandler = async (req, res) => {
   }
   
   Object.assign(question, req.body);
-  assertQuestionShape(question.toObject());
+  assertQuestionShape(question.toObject() as unknown as Record<string, unknown>);
   
   if (touchesContent) question.version += 1;
   await question.save();
